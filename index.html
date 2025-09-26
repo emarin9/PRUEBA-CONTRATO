@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contrato de Compraventa de Vehículos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <h1>Contrato de Compraventa de Vehículos</h1>
+      <p>Completa este formulario paso a paso para generar un contrato sólido y profesional conforme a la normativa española.</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="form-card">
+      <div class="progress">
+        <div class="progress__bar" id="progressBar"></div>
+        <div class="progress__steps">
+          <div class="progress-step" data-step="0">
+            <span>1</span>
+            <p>Contrato</p>
+          </div>
+          <div class="progress-step" data-step="1">
+            <span>2</span>
+            <p>Vendedor</p>
+          </div>
+          <div class="progress-step" data-step="2">
+            <span>3</span>
+            <p>Comprador</p>
+          </div>
+          <div class="progress-step" data-step="3">
+            <span>4</span>
+            <p>Vehículo</p>
+          </div>
+          <div class="progress-step" data-step="4">
+            <span>5</span>
+            <p>Condiciones</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="contractForm" novalidate>
+        <section class="form-step active" data-step="0">
+          <h2>Datos del contrato</h2>
+          <div class="grid">
+            <label>
+              <span>Ciudad de formalización</span>
+              <input type="text" name="ciudad_formalizacion" placeholder="Ej. Madrid" required />
+            </label>
+            <label>
+              <span>Fecha del contrato</span>
+              <input type="date" name="fecha_contrato" required />
+            </label>
+            <label>
+              <span>Lugar de entrega</span>
+              <input type="text" name="lugar_entrega" placeholder="Ej. Calle Alcalá 123" />
+            </label>
+            <label>
+              <span>Hora de entrega</span>
+              <input type="time" name="hora_entrega" />
+            </label>
+          </div>
+          <div class="form-step__actions">
+            <button type="button" class="btn btn--primary" data-action="next">Siguiente</button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="1">
+          <h2>Datos del vendedor</h2>
+          <div class="grid">
+            <label>
+              <span>Nombre completo</span>
+              <input type="text" name="vendedor_nombre" placeholder="Ej. Ana García" required />
+            </label>
+            <label>
+              <span>DNI/NIE</span>
+              <input type="text" name="vendedor_dni" placeholder="00000000X" required />
+            </label>
+            <label>
+              <span>Correo electrónico</span>
+              <input type="email" name="vendedor_email" placeholder="ana@email.com" />
+            </label>
+            <label>
+              <span>Teléfono</span>
+              <input type="tel" name="vendedor_telefono" placeholder="600 000 000" />
+            </label>
+            <label class="grid--full">
+              <span>Domicilio</span>
+              <input type="text" name="vendedor_direccion" placeholder="Calle, número, código postal, ciudad" />
+            </label>
+          </div>
+          <div class="form-step__actions">
+            <button type="button" class="btn" data-action="prev">Anterior</button>
+            <button type="button" class="btn btn--primary" data-action="next">Siguiente</button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="2">
+          <h2>Datos del comprador</h2>
+          <div class="grid">
+            <label>
+              <span>Nombre completo</span>
+              <input type="text" name="comprador_nombre" placeholder="Ej. Luis Martínez" required />
+            </label>
+            <label>
+              <span>DNI/NIE</span>
+              <input type="text" name="comprador_dni" placeholder="00000000X" required />
+            </label>
+            <label>
+              <span>Correo electrónico</span>
+              <input type="email" name="comprador_email" placeholder="luis@email.com" />
+            </label>
+            <label>
+              <span>Teléfono</span>
+              <input type="tel" name="comprador_telefono" placeholder="600 000 000" />
+            </label>
+            <label class="grid--full">
+              <span>Domicilio</span>
+              <input type="text" name="comprador_direccion" placeholder="Calle, número, código postal, ciudad" />
+            </label>
+          </div>
+          <div class="form-step__actions">
+            <button type="button" class="btn" data-action="prev">Anterior</button>
+            <button type="button" class="btn btn--primary" data-action="next">Siguiente</button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="3">
+          <h2>Datos del vehículo y documentación</h2>
+          <div class="grid">
+            <label>
+              <span>Matrícula</span>
+              <input type="text" name="vehiculo_matricula" placeholder="0000-XXX" required />
+            </label>
+            <label>
+              <span>Marca</span>
+              <input type="text" name="vehiculo_marca" placeholder="Ej. SEAT" required />
+            </label>
+            <label>
+              <span>Modelo</span>
+              <input type="text" name="vehiculo_modelo" placeholder="Ej. Ibiza" required />
+            </label>
+            <label>
+              <span>Año de matriculación</span>
+              <input type="number" name="vehiculo_anio" placeholder="2020" min="1950" max="2099" />
+            </label>
+            <label>
+              <span>Nº bastidor</span>
+              <input type="text" name="vehiculo_bastidor" placeholder="VIN" />
+            </label>
+            <label>
+              <span>Kilometraje</span>
+              <input type="number" name="vehiculo_km" placeholder="Ej. 45.000" />
+            </label>
+            <label>
+              <span>Combustible</span>
+              <select name="vehiculo_combustible">
+                <option value="">Selecciona una opción</option>
+                <option>Gasolina</option>
+                <option>Diésel</option>
+                <option>Híbrido</option>
+                <option>Eléctrico</option>
+                <option>GLP</option>
+              </select>
+            </label>
+            <label>
+              <span>ITV vigente hasta</span>
+              <input type="date" name="vehiculo_itv" />
+            </label>
+          </div>
+          <fieldset class="fieldset">
+            <legend>Documentación entregada</legend>
+            <div class="tag-grid">
+              <label class="checkbox-chip">
+                <input type="checkbox" name="documentos" value="Permiso de circulación" />
+                <span>Permiso de circulación</span>
+              </label>
+              <label class="checkbox-chip">
+                <input type="checkbox" name="documentos" value="Ficha técnica" />
+                <span>Ficha técnica</span>
+              </label>
+              <label class="checkbox-chip">
+                <input type="checkbox" name="documentos" value="ITV vigente" />
+                <span>ITV vigente</span>
+              </label>
+              <label class="checkbox-chip">
+                <input type="checkbox" name="documentos" value="Libro de mantenimiento" />
+                <span>Libro de mantenimiento</span>
+              </label>
+              <label class="checkbox-chip">
+                <input type="checkbox" name="documentos" value="Llaves adicionales" />
+                <span>Llaves adicionales</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="form-step__actions">
+            <button type="button" class="btn" data-action="prev">Anterior</button>
+            <button type="button" class="btn btn--primary" data-action="next">Siguiente</button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="4">
+          <h2>Condiciones económicas y clausulado</h2>
+          <div class="grid">
+            <label>
+              <span>Precio de venta (€)</span>
+              <input type="number" name="precio" placeholder="Ej. 15.500" required />
+            </label>
+            <label>
+              <span>Señal o depósito (€)</span>
+              <input type="number" name="deposito" placeholder="Ej. 500" />
+            </label>
+            <label>
+              <span>Forma de pago</span>
+              <select name="forma_pago">
+                <option value="">Selecciona una opción</option>
+                <option>Transferencia bancaria</option>
+                <option>Cheque bancario</option>
+                <option>Pago en efectivo (máx. permitido)</option>
+                <option>Financiación</option>
+              </select>
+            </label>
+            <label>
+              <span>Fecha prevista de pago</span>
+              <input type="date" name="fecha_pago" />
+            </label>
+          </div>
+
+          <label class="grid--full">
+            <span>Estado del vehículo / observaciones</span>
+            <textarea name="observaciones" rows="4" placeholder="Indica desperfectos, garantías, accesorios incluidos..."></textarea>
+          </label>
+
+          <fieldset class="fieldset">
+            <legend>Cláusulas adicionales</legend>
+            <label class="checkbox">
+              <input type="checkbox" name="clausula_garantia" />
+              <span>El vendedor declara estar al corriente de impuestos, multas y cargas administrativas.</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" name="clausula_revision" />
+              <span>El comprador reconoce haber probado el vehículo y acepta su estado actual.</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" name="clausula_datos" />
+              <span>Ambas partes autorizan el tratamiento de los datos personales para la formalización del contrato.</span>
+            </label>
+          </fieldset>
+
+          <div class="signature-grid">
+            <label>
+              <span>Lugar de firma</span>
+              <input type="text" name="lugar_firma" placeholder="Ciudad" />
+            </label>
+            <label>
+              <span>Fecha de firma</span>
+              <input type="date" name="fecha_firma" />
+            </label>
+          </div>
+
+          <div class="form-step__actions">
+            <button type="button" class="btn" data-action="prev">Anterior</button>
+            <button type="button" class="btn btn--accent" data-action="summary">Ver resumen</button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="5">
+          <h2>Resumen del contrato</h2>
+          <p class="muted">Revisa toda la información antes de descargar o imprimir el contrato.</p>
+          <div class="summary" id="summary"></div>
+          <div class="form-step__actions">
+            <button type="button" class="btn" data-action="prev">Editar datos</button>
+            <button type="submit" class="btn btn--primary">Guardar borrador</button>
+            <button type="button" class="btn btn--ghost" data-action="print">Imprimir</button>
+          </div>
+        </section>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <small>Plantilla orientativa. Valida siempre los datos y adapta el contrato a tus necesidades.</small>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
