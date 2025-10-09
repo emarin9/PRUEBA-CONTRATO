@@ -7,6 +7,74 @@ const toast = document.getElementById('toast');
 
 let currentStep = 0;
 
+const validators = {
+  email: {
+    message: 'Introduce un correo electrónico válido.',
+    test: (value) => /.+@.+\..+/.test(value)
+  },
+  phone: {
+    message: 'Introduce un teléfono español válido de 9 dígitos.',
+    test: (value) => {
+      const digits = value.replace(/\D/g, '');
+      return digits.length === 9;
+    }
+  },
+  matricula: {
+    message: 'Introduce una matrícula válida (formato 0000-XXX).',
+    test: (value) => /^\d{4}[-\s]?[A-Z]{3}$/.test(value.toUpperCase())
+  },
+  dni: {
+    message: 'Introduce un DNI/NIE válido.',
+    test: (value) => {
+      const upperValue = value.toUpperCase();
+      const dniRegex = /^(\d{8})([A-Z])$/;
+      const nieRegex = /^[XYZ]\d{7}[A-Z]$/;
+      const letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+
+      const normalizeNie = (nie) => {
+        const map = { X: '0', Y: '1', Z: '2' };
+        return `${map[nie[0]]}${nie.slice(1)}`;
+      };
+
+      if (dniRegex.test(upperValue)) {
+        const [, number, letter] = upperValue.match(dniRegex);
+        return letters[Number(number) % 23] === letter;
+      }
+
+      if (nieRegex.test(upperValue)) {
+        const number = normalizeNie(upperValue.slice(0, -1));
+        const letter = upperValue.slice(-1);
+        return letters[Number(number) % 23] === letter;
+      }
+
+      return false;
+    }
+  }
+};
+
+const applyValidation = (input) => {
+  const ruleName = input.dataset.validate;
+  const validator = ruleName ? validators[ruleName] : null;
+  let value = input.value.trim();
+
+  if (ruleName === 'dni' || ruleName === 'matricula') {
+    value = value.toUpperCase();
+    input.value = value;
+  }
+
+  if (validator && value) {
+    if (!validator.test(value)) {
+      input.setCustomValidity(validator.message);
+    } else {
+      input.setCustomValidity('');
+    }
+  } else {
+    input.setCustomValidity('');
+  }
+
+  return input.checkValidity();
+};
+
 const updateProgress = () => {
   const totalStages = steps.length - 1;
   const safeStep = Math.min(currentStep, totalStages);
@@ -159,14 +227,25 @@ const renderSummary = () => {
 
 const validateStep = (stepIndex) => {
   const step = steps[stepIndex];
-  const inputs = Array.from(step.querySelectorAll('input[required], select[required], textarea[required]'));
-  return inputs.every((input) => {
-    if (!input.checkValidity()) {
-      input.reportValidity();
-      return false;
+  const inputs = Array.from(step.querySelectorAll('input, select, textarea'));
+  let isValid = true;
+  let firstInvalid = null;
+
+  inputs.forEach((input) => {
+    const valid = applyValidation(input);
+    if (!valid && !firstInvalid) {
+      firstInvalid = input;
     }
-    return true;
+    if (!valid) {
+      isValid = false;
+    }
   });
+
+  if (!isValid && firstInvalid) {
+    firstInvalid.reportValidity();
+  }
+
+  return isValid;
 };
 
 form.addEventListener('click', (event) => {
@@ -197,11 +276,23 @@ form.addEventListener('click', (event) => {
   }
 });
 
-form.addEventListener('input', () => {
+form.addEventListener('input', (event) => {
+  const target = event.target;
+  if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement) {
+    applyValidation(target);
+  }
+
   if (currentStep === steps.length - 1) {
     renderSummary();
   }
 });
+
+form.addEventListener('blur', (event) => {
+  const target = event.target;
+  if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement || target instanceof HTMLTextAreaElement) {
+    applyValidation(target);
+  }
+}, true);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -216,5 +307,7 @@ const showToast = (message) => {
     toast.classList.remove('show');
   }, 2800);
 };
+
+Array.from(form.querySelectorAll('[data-validate]')).forEach((input) => applyValidation(input));
 
 updateProgress();

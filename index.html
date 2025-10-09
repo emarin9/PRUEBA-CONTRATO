@@ -13,7 +13,9 @@
   <header class="hero">
     <div class="hero__content">
       <h1>Contrato de Compraventa de Vehículos</h1>
-      <p>Completa este formulario paso a paso para generar un contrato sólido y profesional conforme a la normativa española.</p>
+      <p>
+        Completa este formulario paso a paso para generar un contrato sólido y profesional conforme a la normativa española.
+      </p>
     </div>
   </header>
 
@@ -80,15 +82,15 @@
             </label>
             <label>
               <span>DNI/NIE</span>
-              <input type="text" name="vendedor_dni" placeholder="00000000X" required />
+              <input type="text" name="vendedor_dni" placeholder="00000000X" required data-validate="dni" />
             </label>
             <label>
               <span>Correo electrónico</span>
-              <input type="email" name="vendedor_email" placeholder="ana@email.com" />
+              <input type="email" name="vendedor_email" placeholder="ana@email.com" data-validate="email" />
             </label>
             <label>
               <span>Teléfono</span>
-              <input type="tel" name="vendedor_telefono" placeholder="600 000 000" />
+              <input type="tel" name="vendedor_telefono" placeholder="600 000 000" data-validate="phone" inputmode="tel" />
             </label>
             <label class="grid--full">
               <span>Domicilio</span>
@@ -110,15 +112,15 @@
             </label>
             <label>
               <span>DNI/NIE</span>
-              <input type="text" name="comprador_dni" placeholder="00000000X" required />
+              <input type="text" name="comprador_dni" placeholder="00000000X" required data-validate="dni" />
             </label>
             <label>
               <span>Correo electrónico</span>
-              <input type="email" name="comprador_email" placeholder="luis@email.com" />
+              <input type="email" name="comprador_email" placeholder="luis@email.com" data-validate="email" />
             </label>
             <label>
               <span>Teléfono</span>
-              <input type="tel" name="comprador_telefono" placeholder="600 000 000" />
+              <input type="tel" name="comprador_telefono" placeholder="600 000 000" data-validate="phone" inputmode="tel" />
             </label>
             <label class="grid--full">
               <span>Domicilio</span>
@@ -136,7 +138,7 @@
           <div class="grid">
             <label>
               <span>Matrícula</span>
-              <input type="text" name="vehiculo_matricula" placeholder="0000-XXX" required />
+              <input type="text" name="vehiculo_matricula" placeholder="0000-XXX" required data-validate="matricula" />
             </label>
             <label>
               <span>Marca</span>
