@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batalla de Provincias de España</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__titles">
+        <p class="eyebrow">Simulación 3D estilizada</p>
+        <h1>Batalla de Provincias de España</h1>
+        <p class="lede">
+          Un mapa interactivo y colorido donde cada provincia se enfrenta usando su población.
+          El ganador crece, se queda con el color y absorbe las fronteras del rival.
+        </p>
+        <div class="actions">
+          <button id="battleButton" class="button primary">Elegir batalla</button>
+          <button id="resetButton" class="button ghost">Reiniciar</button>
+        </div>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <p class="stat__label">Provincias activas</p>
+          <p class="stat__value" id="activeCount">50</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Población total simulada</p>
+          <p class="stat__value" id="populationTotal">0</p>
+        </div>
+        <div class="stat">
+          <p class="stat__label">Última batalla</p>
+          <p class="stat__value" id="lastBattle">—</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panel__header">
+          <div>
+            <p class="panel__eyebrow">Mapa extruido</p>
+            <h2>Mapa hexagonal de provincias</h2>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="autoBattle" />
+            <span class="toggle__track">
+              <span class="toggle__thumb"></span>
+            </span>
+            <span class="toggle__label">Batallas automáticas</span>
+          </label>
+        </div>
+        <div id="mapContainer" class="map"></div>
+      </section>
+
+      <section class="panel panel--side">
+        <div class="panel__header">
+          <div>
+            <p class="panel__eyebrow">Datos rápidos</p>
+            <h2>Fuerza y color</h2>
+          </div>
+        </div>
+        <div class="cards" id="provinceList"></div>
+        <div class="log" id="battleLog"></div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
